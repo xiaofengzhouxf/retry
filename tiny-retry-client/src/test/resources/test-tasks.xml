@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans default-autowire="byName">
+
+	<!-- 定义一个重试服务 -->
+	<bean id="retryTaskService" class="com.github.tinyretry.retry.MockRetryTaskService" />
+
+	<!-- 定义一个任务 -->
+	<bean id="testTask" class="com.github.tinyretry.retry.domain.Task">
+		<!-- 任务名称，可以到管理页面查询 -->
+		<property name="taskName" value="testTask" />
+		<!-- 任务描述信息 -->
+		<property name="description" value="testTask" />
+		<!-- 任务失败后的重试周期 -->
+		<property name="retryPeriod" value="3000" />
+		<!-- 任务执行的超时时间，超时后任务会被竞争后重新创建 -->
+		<property name="executeTimeOut" value="6000" />
+		<!-- 任务失败后的重试周期因子 -->
+		<property name="retryFactor" value="1.2" />
+		<!-- 重试次数 -->
+		<property name="retryTime" value="2" />
+		<!-- 优先级，越大越优先 -->
+		<property name="priority" value="1" />
+		<!-- 任务关联的应用名，可以在管理页面查询 -->
+		<property name="appCode" value="mediacodec" />
+		<!-- 该任务的处理者 -->
+		<property name="processor" ref="testProcessor" />
+	</bean>
+
+	<!-- 处理器 -->
+	<bean id="testProcessor" class="com.github.tinyretry.retry.TestProcessor" />
+
+</beans>

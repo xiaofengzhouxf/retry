@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties [
+<!ELEMENT properties (comment?, entry*)>
+<!ATTLIST properties version CDATA #FIXED "1.0">
+<!ELEMENT comment (#PCDATA)>
+<!ELEMENT entry (#PCDATA)>
+<!ATTLIST entry key CDATA #REQUIRED>
+]>
+<properties>
+	<entry key="retry.sys.retry.count">3</entry>
+	<entry key="retry.sys.retry.period.millisecond">1000</entry>
+	<entry key="retry.sys.retry.period.factor">2</entry>
+	<entry key="retry.sys.retry.execute.timeout">3600000</entry>
+	<entry key="retry.app.code">app_code</entry>
+	<entry key="retry.zookeeper.connect.str">10.232.37.114:2181,10.232.37.112:2181,10.232.102.191:2181</entry>
+	<entry key="retry.zookeeper.connect.time.out">20000</entry>
+	<entry key="retry.zookeeper.connect.retry.times">5</entry>
+	<entry key="retry.zookeeper.connect.retry.interval.time">1000</entry>
+	<entry key="retry.zookeeper.execute.connect.timeout">10000</entry>
+	<entry key="retry.zookeeper.default.parent">/lockparent</entry>
+</properties>
