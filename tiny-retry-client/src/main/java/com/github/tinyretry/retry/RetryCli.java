@@ -44,9 +44,9 @@ import com.github.tinyretry.timer.ext.McJobDefinition;
  * history:
  * </pre>
  */
-public class RetryServer implements LifeCycle, Configureable, ApplicationContextAware {
+public class RetryCli implements LifeCycle, Configureable, ApplicationContextAware {
 
-    private static final Logger logger        = LoggerFactory.getLogger(RetryServer.class);
+    private static final Logger logger        = LoggerFactory.getLogger(RetryCli.class);
     private ApplicationContext  applicationContext;
     private volatile int        status        = BORN.getStatus();
     private List<RetryScanner>  scanners;
@@ -55,7 +55,7 @@ public class RetryServer implements LifeCycle, Configureable, ApplicationContext
     private Map<String, Task>   tasks         = new HashMap<String, Task>();
     private Configuretion       configuretion;
 
-    public RetryServer(){
+    public RetryCli(){
         super();
 
         if (configuretion == null) {

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans default-autowire="byName">
+
+	<!-- 重试任务扫描器启动服务，考虑到任务扫描的成本，尽量让个别机器启动该服务，1～2台最佳 -->
+	<bean id="retryServer" class="com.github.tinyretry.retry.RetryCli">
+		<property name="scanners">
+			<list>
+				<!-- 扫描任务 -->
+				<ref local="reTryDispatcher" />
+				<!-- 扫描超时任务 -->
+				<ref local="reTryTimeOutScanner" />
+			</list>
+		</property>
+		<property name="mcJobSchedule">
+                <!-- 公共调度器,任务量大时可以自定义一个,把扫描器的和处理器asyncProcessor的调度器隔离 -->
+                <bean class="com.github.tinyretry.timer.McJobSchedule">
+                    <property name="scheduleName" value="retry_simple_schedule" />
+                    <property name="scheduleNameId" value="retry_simple_schedule" />
+                    <property name="maxThreads" value="4" />
+                </bean>
+        </property>
+    </bean>
+
+	<bean id="reTryDispatcher" class="com.github.tinyretry.retry.scanner.ReTryDispatcher">
+		<property name="definition">
+			<bean class="com.github.tinyretry.timer.ext.McJobDefinition">
+				<property name="groupId" value="thirdSecond" />
+				<property name="name" value="reTryDispatcher" />
+			</bean>
+		</property>
+		<property name="server" ref="retryServer" />
+		<property name="repeatInterval" value="10000" />
+	</bean>
+
+	<!-- 超时扫描器 -->
+	<bean id="reTryTimeOutScanner" class="com.github.tinyretry.retry.scanner.ReTryTimeOutScanner">
+		<!-- 扫描器运行时间定义，允许定时或者周期执行，默认为10分钟运行一次 -->
+		<property name="definition">
+			<bean class="com.github.tinyretry.timer.ext.McJobDefinition">
+				<!-- 执行时间为10分钟 -->
+				<property name="groupId" value="tenMin" />
+				<property name="name" value="reTryTimeOutScanner" />
+			</bean>
+		</property>
+		<property name="server" ref="retryServer" />
+		<!-- 超时任务查询周期,默认1小时，即每10分钟运行一次扫描器，扫描1个小时以前的处理中的任务，用作判断是否超时 超时条件: 任务的executeTimeOut 
+			加上 上一次执行的时间点 小于当前时间 所以这个值需要根据任务执行情况自己定义 -->
+		<property name="repeatInterval" value="3600000" />
+	</bean>
+
+</beans>
