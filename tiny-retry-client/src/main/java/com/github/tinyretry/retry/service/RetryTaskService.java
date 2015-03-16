@@ -20,71 +20,59 @@ import com.github.tinyretry.retry.exception.RetryRemoteException;
  */
 public interface RetryTaskService {
 
-	public List<McTaskDO> queryMcTaskList(TaskQuery taskQuery) throws RetryRemoteException;
+    public List<McTaskDO> queryMcTaskList(TaskQuery taskQuery) throws RetryRemoteException;
 
-	public int countMcTaskList(TaskQuery taskQuery) throws RetryRemoteException;
+    public int countMcTaskList(TaskQuery taskQuery) throws RetryRemoteException;
 
-	/**
-	 * @author xiaofeng
-     * Date 2012-09-05
-	 */
-	public McTaskDO insertMcTask(McTaskDO mcTaskDO) throws RetryRemoteException;
+    /**
+     * @author xiaofeng Date 2012-09-05
+     */
+    public McTaskDO insertMcTask(McTaskDO mcTaskDO) throws RetryRemoteException;
 
-	/**
-	 * @author xiaofeng
-     * Date 2012-09-05
-	 */
-	public Integer updateMcTask(McTaskDO mcTaskDO) throws RetryRemoteException;
+    /**
+     * @author xiaofeng Date 2012-09-05
+     */
+    public Integer updateMcTask(McTaskDO mcTaskDO) throws RetryRemoteException;
 
-	/**
-	 * 
-	 * @param mcTaskDO
-	 * @return
-	 * @throws RetryRemoteException
-	 */
-	public Integer updateMcTaskStatus(TaskUpdate taskUpdate) throws RetryRemoteException;
+    /**
+     * @return
+     * @throws RetryRemoteException
+     */
+    public Integer updateMcTaskStatus(TaskUpdate taskUpdate) throws RetryRemoteException;
 
-	/**
-	 * @author xiaofeng
-     * Date 2012-09-05
-	 */
-	public Integer deleteMcTask(McTaskDO mcTaskDO) throws RetryRemoteException;
+    /**
+     * @author xiaofeng Date 2012-09-05
+     */
+    public Integer deleteMcTask(McTaskDO mcTaskDO) throws RetryRemoteException;
 
-	
-	
-	
-	//=======================history=========================================================
-	/**
-	 * select mc_task_history
-	 * 
-	 * @author xiaofeng
-     * Date 2012-09-05
-	 */
-	public List<McTaskHistoryDO> queryMcTaskHistoryList(TaskHistoryQuery taskHistoryQuery) throws RetryRemoteException;
+    // =======================history=========================================================
+    /**
+     * select mc_task_history
+     * 
+     * @author xiaofeng Date 2012-09-05
+     */
+    public List<McTaskHistoryDO> queryMcTaskHistoryList(TaskHistoryQuery taskHistoryQuery) throws RetryRemoteException;
 
-	public int countMcTaskHistoryList(TaskHistoryQuery taskHistoryQuery) throws RetryRemoteException;
+    public int countMcTaskHistoryList(TaskHistoryQuery taskHistoryQuery) throws RetryRemoteException;
 
-	/**
-	 * insert into mc_task_history
-	 * 
-	 * @author xiaofeng
-     * Date 2012-09-05
-	 */
-	public Long insertMcTaskHistory(McTaskHistoryDO mcTaskHistoryDO) throws RetryRemoteException;
+    /**
+     * insert into mc_task_history
+     * 
+     * @author xiaofeng Date 2012-09-05
+     */
+    public Long insertMcTaskHistory(McTaskHistoryDO mcTaskHistoryDO) throws RetryRemoteException;
 
-	/**
-	 * update mc_task_history
-	 * 
-	 * @author xiaofeng
-     * Date 2012-09-05
-	 */
-	public Integer updateMcTaskHistory(McTaskHistoryDO mcTaskHistoryDO) throws RetryRemoteException;
+    /**
+     * update mc_task_history
+     * 
+     * @author xiaofeng Date 2012-09-05
+     */
+    public Integer updateMcTaskHistory(McTaskHistoryDO mcTaskHistoryDO) throws RetryRemoteException;
 
-	/**
-	 * delete from mc_task_history
-	 * 
-	 * @author xiaofeng
-     * Date 2012-09-05
-	 */
-	public Integer deleteMcTaskHistory(McTaskHistoryDO mcTaskHistoryDO) throws RetryRemoteException;
+    /**
+     * delete from mc_task_history
+     * 
+     * @author xiaofeng Date 2012-09-05
+     */
+    public Integer deleteMcTaskHistory(McTaskHistoryDO mcTaskHistoryDO) throws RetryRemoteException;
 }

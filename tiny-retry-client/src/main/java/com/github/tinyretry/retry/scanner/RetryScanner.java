@@ -1,8 +1,9 @@
 package com.github.tinyretry.retry.scanner;
 
 import com.github.tinyretry.retry.AsyncProcessor;
-import com.github.tinyretry.retry.RetryServer;
-import com.github.tinyretry.retry.service.TaskManage;
+import com.github.tinyretry.retry.RetryCli;
+import com.github.tinyretry.retry.service.RetryTaskService;
+import com.github.tinyretry.timer.McJobSchedule;
 import com.github.tinyretry.timer.domain.McJob;
 
 /**
@@ -15,59 +16,70 @@ import com.github.tinyretry.timer.domain.McJob;
  * </pre>
  */
 public abstract class RetryScanner extends McJob {
-	/**
-	 * 对应的业务码
-	 */
-	protected String appCode;
 
-	/**
-	 * 本scanner重复执行时间
-	 */
-	protected long repeatInterval;
+    /**
+     * 对应的业务码
+     */
+    protected String           appCode;
 
-	protected RetryServer server;
+    /**
+     * 本scanner重复执行时间
+     */
+    protected long             repeatInterval;
 
-	protected AsyncProcessor asyncProcessor;
+    protected RetryCli         server;
 
-	protected TaskManage taskManage;
+    protected AsyncProcessor   asyncProcessor;
 
-	public String getAppCode() {
-		return appCode;
-	}
+    protected RetryTaskService retryTaskService;
 
-	public void setAppCode(String appCode) {
-		this.appCode = appCode;
-	}
+    protected McJobSchedule    retryMcJobSchedule = null;
 
-	public long getRepeatInterval() {
-		return repeatInterval;
-	}
+    public String getAppCode() {
+        return appCode;
+    }
 
-	public void setRepeatInterval(long repeatInterval) {
-		this.repeatInterval = repeatInterval;
-	}
+    public void setAppCode(String appCode) {
+        this.appCode = appCode;
+    }
 
-	public RetryServer getServer() {
-		return server;
-	}
+    public long getRepeatInterval() {
+        return repeatInterval;
+    }
 
-	public void setServer(RetryServer server) {
-		this.server = server;
-	}
+    public void setRepeatInterval(long repeatInterval) {
+        this.repeatInterval = repeatInterval;
+    }
 
-	public AsyncProcessor getAsyncProcessor() {
-		return asyncProcessor;
-	}
+    public RetryCli getServer() {
+        return server;
+    }
 
-	public void setAsyncProcessor(AsyncProcessor asyncProcessor) {
-		this.asyncProcessor = asyncProcessor;
-	}
+    public void setServer(RetryCli server) {
+        this.server = server;
+    }
 
-	public TaskManage getTaskManage() {
-		return taskManage;
-	}
+    public AsyncProcessor getAsyncProcessor() {
+        return asyncProcessor;
+    }
 
-	public void setTaskManage(TaskManage taskManage) {
-		this.taskManage = taskManage;
-	}
+    public void setAsyncProcessor(AsyncProcessor asyncProcessor) {
+        this.asyncProcessor = asyncProcessor;
+    }
+
+    public RetryTaskService getRetryTaskService() {
+        return retryTaskService;
+    }
+
+    public void setRetryTaskService(RetryTaskService retryTaskService) {
+        this.retryTaskService = retryTaskService;
+    }
+
+    public McJobSchedule getRetryMcJobSchedule() {
+        return retryMcJobSchedule;
+    }
+
+    public void setRetryMcJobSchedule(McJobSchedule retryMcJobSchedule) {
+        this.retryMcJobSchedule = retryMcJobSchedule;
+    }
 }

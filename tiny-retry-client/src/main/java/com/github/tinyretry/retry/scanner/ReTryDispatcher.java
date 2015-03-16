@@ -52,7 +52,7 @@ public class ReTryDispatcher extends RetryScanner {
 			// 随机休息一下,以便错开任务
 			Thread.sleep(RandomUtils.nextInt(3000));
 			// 1. Get tasks by appCode, order by priority
-			List<McTaskDO> dbTasks = taskManage
+			List<McTaskDO> dbTasks = retryTaskService
 					.queryMcTaskList(generateQuery());
 			int dealCount = 0;
 			if (dbTasks != null && dbTasks.size() > 0) {
@@ -77,7 +77,7 @@ public class ReTryDispatcher extends RetryScanner {
 									.shortValue()));
 							BeanUtils.copyProperties(update, task);
 							update.setOldStatus(TaskStatus.WAITING.getStatus());
-							Integer updateMcTask = taskManage
+							Integer updateMcTask = retryTaskService
 									.updateMcTaskStatus(update);
 
 							if (updateMcTask > 0) {
@@ -114,7 +114,7 @@ public class ReTryDispatcher extends RetryScanner {
 							// status of task.
 							task.setStatus(TaskStatus.FAIL.getStatus());
 							update.setOldStatus(TaskStatus.DEALING.getStatus());
-							taskManage.updateMcTaskStatus(update);
+                            retryTaskService.updateMcTaskStatus(update);
 						}
 						// finally {
 						// lock.unlock();
