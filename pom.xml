@@ -16,6 +16,7 @@
     </modules>
 
     <properties>
+        <project.build.sourceEncoding>GBK</project.build.sourceEncoding>
         <log4j.version>2.1</log4j.version>
     </properties>
 
@@ -100,5 +101,19 @@
 
     </dependencyManagement>
 
+
+<build>
+    
+    <plugins>
+        <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+                <encoding>GBK</encoding>
+            </configuration>
+        </plugin>
+    </plugins>
+    
+    
+</build>
 
 </project>

@@ -10,65 +10,73 @@
 
 	<artifactId>tinyretry-client</artifactId>
 
-
+	<properties>
+		<project.build.sourceEncoding>GBK</project.build.sourceEncoding>
+		<log4j.version>2.1</log4j.version>
+	</properties>
 
 	<dependencies>
 
 		<dependency>
 			<groupId>com.github.commons</groupId>
-			<artifactId>commons-utils</artifactId>
+			<artifactId>common-utils</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
 
-
-
-		<!-- framework -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
+			<version>4.1.5.RELEASE</version>
 		</dependency>
 
 		<!-- common tools -->
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
+			<version>2.6</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
 		</dependency>
 		<dependency>
 			<groupId>opensymphony</groupId>
 			<artifactId>quartz-all</artifactId>
+			<version>1.6.3</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-beanutils</groupId>
 			<artifactId>commons-beanutils</artifactId>
+			<version>1.9.2</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-collections</groupId>
 			<artifactId>commons-collections</artifactId>
+			<version>3.2.1</version>
 		</dependency>
 		<!--for log -->
 		<!-- log -->
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
+			<version>${log4j.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
+			<version>${log4j.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-slf4j-impl</artifactId>
+			<version>${log4j.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
+			<version>1.7.10</version>
 		</dependency>
-
-		<!--for log -->
 
 
 		<dependency>
@@ -95,5 +103,39 @@
 			<version>1.3.RC2</version>
 			<scope>test</scope>
 		</dependency>
+
+
+
+
+
 	</dependencies>
+
+	<build>
+
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<encoding>GBK</encoding>
+				</configuration>
+			</plugin>
+			<plugin>  
+                <artifactId>maven-source-plugin</artifactId>  
+                <version>2.1</version>  
+                <configuration>  
+                    <attach>true</attach>  
+                </configuration>  
+                <executions>  
+                    <execution>  
+                        <phase>compile</phase>  
+                        <goals>  
+                            <goal>jar</goal>  
+                        </goals>  
+                    </execution>  
+                </executions>  
+            </plugin>  
+		</plugins>
+
+
+	</build>
 </project>
